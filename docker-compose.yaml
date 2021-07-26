@@ -1,0 +1,24 @@
+version: '3'
+services:
+  simple-picpay:
+    build: ./
+    image: jordi/sendler-email:0.1
+    ports:
+      - 8080:8080
+    environment:
+      DB_URL: jdbc:mysql://mysql:3306/sendlerEmail
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      SMTP_EMAIL: seuemail@gmail.com
+      SMTP_PASSWORD: senhade16digitos
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: sendlerEmail
